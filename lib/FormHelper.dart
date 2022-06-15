@@ -294,10 +294,10 @@ class FormHelper {
           title: new Text(title),
           content: new Text(message),
           actions: [
-            submitButton(
-              "qwe",
-              onPressed(),
-            ),
+            // submitButton(
+            //   "qwe",
+            //   onPressed(),
+            // ),
             new TextButton(
               onPressed: () {
                 return onPressed();
@@ -363,111 +363,71 @@ class FormHelper {
       ),
       child: FormField<dynamic>(
         builder: (FormFieldState<dynamic> state) {
-          return DropdownButtonFormField<String>(
-            isExpanded: true,
-            value: value != "" ? value : null,
-            isDense: true,
-            hint: Text(
-              hintText,
-              style: TextStyle(
-                fontSize: hintFontSize,
-              ),
-            ),
+          return InputDecorator(
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(contentPadding),
-              errorStyle: TextStyle(
-                color: validationColor,
-              ),
-              hintStyle: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: hintFontSize,
-                color: hintColor,
-              ),
-              hintText: hintText,
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(borderRadius),
-                borderSide: BorderSide(
-                  color: borderColor,
-                  width: enabledBorderWidth,
-                ),
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(borderRadius),
-                borderSide: BorderSide(
-                  color: borderColor,
-                  width: borderWidth,
-                ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: borderFocusColor,
-                  width: focusedBorderWidth,
-                ),
-                borderRadius: BorderRadius.circular(borderRadius),
-              ),
-              suffixIcon: suffixIcon,
-              prefixIcon: showPrefixIcon
-                  ? Padding(
-                      child: IconTheme(
-                        data: IconThemeData(color: prefixIconColor),
-                        child: prefixIcon!,
-                      ),
-                      padding: EdgeInsets.only(
-                        left: prefixIconPaddingLeft,
-                        right: prefixIconPaddingRight,
-                        top: prefixIconPaddingTop,
-                        bottom: prefixIconPaddingBottom,
-                      ),
-                    )
-                  : null,
+              contentPadding:
+                  EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(16.0)),
             ),
-            // decoration: InputDecoration(
-            //   contentPadding: EdgeInsets.all(contentPadding),
-            //   hintStyle: TextStyle(
-            //     fontWeight: FontWeight.bold,
-            //     fontSize: hintFontSize,
-            //   ),
-            //   enabledBorder: OutlineInputBorder(
-            //     borderRadius: BorderRadius.circular(borderRadius),
-            //     borderSide: BorderSide(
-            //       color: borderColor,
-            //       width: 1,
-            //     ),
-            //   ),
-            //   border: OutlineInputBorder(
-            //     borderRadius: BorderRadius.circular(borderRadius),
-            //     borderSide: BorderSide(
-            //       color: borderColor,
-            //       width: 2,
-            //     ),
-            //   ),
-            //   focusedBorder: OutlineInputBorder(
-            //     borderSide: BorderSide(
-            //       color: borderFocusColor,
-            //       width: 2.0,
-            //     ),
-            //     borderRadius: BorderRadius.circular(borderRadius),
-            //   ),
-            // ),
-            onChanged: (newValue) {
-              //  FocusScope.of(context).requestFocus(new FocusNode());
-              state.didChange(newValue);
-              return onChanged(newValue);
-            },
-            validator: (value) {
-              return onValidate(value);
-            },
-            items: lstData.map<DropdownMenuItem<String>>(
-              (dynamic data) {
-                return DropdownMenuItem<String>(
-                  value: data[optionValue].toString(),
-                  child: new Text(
-                    data[optionLabel],
-                    style: new TextStyle(color: Colors.black, fontSize: 13),
-                  ),
-                );
+            child: DropdownButton<String>(
+              isExpanded: true,
+              value: value != "" ? value : null,
+              isDense: true,
+              hint: Text(
+                hintText,
+                style: TextStyle(
+                  fontSize: hintFontSize,
+                ),
+              ),
+              borderRadius: BorderRadius.circular(16.0),
+
+              // decoration: InputDecoration(
+              //   contentPadding: EdgeInsets.all(contentPadding),
+              //   hintStyle: TextStyle(
+              //     fontWeight: FontWeight.bold,
+              //     fontSize: hintFontSize,
+              //   ),
+              //   enabledBorder: OutlineInputBorder(
+              //     borderRadius: BorderRadius.circular(borderRadius),
+              //     borderSide: BorderSide(
+              //       color: borderColor,
+              //       width: 1,
+              //     ),
+              //   ),
+              //   border: OutlineInputBorder(
+              //     borderRadius: BorderRadius.circular(borderRadius),
+              //     borderSide: BorderSide(
+              //       color: borderColor,
+              //       width: 2,
+              //     ),
+              //   ),
+              //   focusedBorder: OutlineInputBorder(
+              //     borderSide: BorderSide(
+              //       color: borderFocusColor,
+              //       width: 2.0,
+              //     ),
+              //     borderRadius: BorderRadius.circular(borderRadius),
+              //   ),
+              // ),
+              onChanged: (newValue) {
+                //  FocusScope.of(context).requestFocus(new FocusNode());
+                state.didChange(newValue);
+                return onChanged(newValue);
               },
-            ).toList(),
+
+              items: lstData.map<DropdownMenuItem<String>>(
+                (dynamic data) {
+                  return DropdownMenuItem<String>(
+                    value: data[optionValue].toString(),
+                    child: new Text(
+                      data[optionLabel],
+                      style: new TextStyle(color: Colors.black, fontSize: 13),
+                    ),
+                  );
+                },
+              ).toList(),
+            ),
           );
         },
       ),
